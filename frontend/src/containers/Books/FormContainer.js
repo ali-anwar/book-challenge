@@ -15,9 +15,9 @@ export class FormContainer extends React.Component {
     };
 
     if (book.id) {
-      const bookBeingUpdated = this.props.books.find(book => book.id == values.id);
+      const bookBeingUpdated = this.props.books.find(book => book.id === values.id);
 
-      if (values == bookBeingUpdated) {
+      if (values === bookBeingUpdated) {
         toastr.success("Book has been updated successfully!");
         this.props.history.push("/books");
         return;
