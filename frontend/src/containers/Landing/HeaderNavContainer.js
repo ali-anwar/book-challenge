@@ -25,13 +25,6 @@ export const HeaderNavContainer = () => {
           >
             Home
           </NavLink>
-          <NavLink
-            className="nav-item nav-link"
-            activeClassName="active"
-            to="/about"
-          >
-            About
-          </NavLink>
         </ul>
       </div>
     </nav>
