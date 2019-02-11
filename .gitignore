@@ -21,3 +21,6 @@
 
 # Ignore master key for decrypting credentials and more.
 /backend/config/master.key
+
+#Ignore Node Modules Folder
+/frontend/node_modules
