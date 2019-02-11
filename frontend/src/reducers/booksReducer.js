@@ -28,6 +28,32 @@ const booksReducer = (state = initialState.booksReducer, action) => {
         books: _.assign([])
       };
     }
+    case ActionType.DELETE_BOOK: {
+      return {
+        ...state,
+        loading: true,
+        error: false
+      };
+    }
+    case ActionType.DELETE_BOOK_SUCCESS: {
+      let updatedBooks = _.assign(
+        state.books.filter(book => book.id !== action.bookId)
+      );
+
+      return {
+        ...state,
+        loading: false,
+        error: false,
+        books: updatedBooks
+      };
+    }
+    case ActionType.DELETE_BOOK_FAILURE: {
+      return {
+        ...state,
+        loading: false,
+        error: action.error
+      };
+    }
     default: {
       return state;
     }

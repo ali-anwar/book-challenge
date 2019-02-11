@@ -13,6 +13,19 @@ export class IndexContainer extends React.Component {
     });
   }
 
+  handleDeleteBook = bookId => {
+    if (bookId) {
+      this.props.action
+        .deleteBookAction(bookId)
+        .then(() => {
+          toastr.success("Book has been deleted successfully!");
+        })
+        .catch(error => {
+          toastr.error(error);
+        });
+    }
+  };
+
   render() {
     const { books } = this.props;
 
@@ -32,6 +45,7 @@ export class IndexContainer extends React.Component {
           <div className="col">
             <BookIndex
               books={books}
+              handleDeleteButton={this.handleDeleteBook}
             />
           </div>
         </div>

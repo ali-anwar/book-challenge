@@ -5,6 +5,18 @@ import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
 const titleFormatter = (cell, row) => {
   return `${cell}`;
 };
+const buttonFormatter = (cell, row, props) => {
+  return (
+    <div>
+      <button
+        className="btn btn-danger"
+        onClick={() => props.handleDeleteButton(row.id)}
+      >
+        <i className="fa fa-trash" aria-hidden="true" /> Delete
+      </button>
+    </div>
+  );
+};
 
 class BookList extends React.Component {
   constructor(props) {
@@ -39,13 +51,22 @@ class BookList extends React.Component {
         <TableHeaderColumn dataField="description" columnTitle>
           Description
         </TableHeaderColumn>
+
+        <TableHeaderColumn
+          dataField="button"
+          dataFormat={buttonFormatter}
+          formatExtraData={this.props}
+        >
+          Actions
+        </TableHeaderColumn>
       </BootstrapTable>
     );
   }
 }
 
 BookList.propTypes = {
-  books: PropTypes.array.isRequired
+  books: PropTypes.array.isRequired,
+  handleDeleteButton: PropTypes.func.isRequired
 };
 
 export default BookList;
