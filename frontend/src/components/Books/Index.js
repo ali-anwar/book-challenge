@@ -5,6 +5,7 @@ import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
 const titleFormatter = (cell, row) => {
   return `${cell}`;
 };
+
 const buttonFormatter = (cell, row, props) => {
   return (
     <div>
@@ -24,56 +25,48 @@ const buttonFormatter = (cell, row, props) => {
   );
 };
 
-class BookList extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const BookIndex = (props) => {
+  return (
+    <BootstrapTable
+      data={props.books}
+      bordered={false}
+      striped
+      hover
+      condensed
+    >
+      <TableHeaderColumn dataField="id" isKey hidden>
+        Id
+      </TableHeaderColumn>
 
-  render() {
-    return (
-      <BootstrapTable
-        data={this.props.books}
-        selectRow={this.selectRowProp}
-        options={this.options}
-        bordered={false}
-        striped
-        hover
-        condensed
+      <TableHeaderColumn
+        dataField="title"
+        dataFormat={titleFormatter}
+        columnTitle
       >
-        <TableHeaderColumn dataField="id" isKey hidden>
-          Id
-        </TableHeaderColumn>
+        Title
+      </TableHeaderColumn>
 
-        <TableHeaderColumn
-          dataField="title"
-          dataFormat={titleFormatter}
-          columnTitle
-        >
-          Title
-        </TableHeaderColumn>
+      <TableHeaderColumn dataField="isbn">ISBN</TableHeaderColumn>
 
-        <TableHeaderColumn dataField="isbn">ISBN</TableHeaderColumn>
+      <TableHeaderColumn dataField="notes" columnTitle>
+        Notes
+      </TableHeaderColumn>
 
-        <TableHeaderColumn dataField="notes" columnTitle>
-          Notes
-        </TableHeaderColumn>
+      <TableHeaderColumn
+        dataField="button"
+        dataFormat={buttonFormatter}
+        formatExtraData={props}
+      >
+        Actions
+      </TableHeaderColumn>
+    </BootstrapTable>
+  );
+};
 
-        <TableHeaderColumn
-          dataField="button"
-          dataFormat={buttonFormatter}
-          formatExtraData={this.props}
-        >
-          Actions
-        </TableHeaderColumn>
-      </BootstrapTable>
-    );
-  }
-}
-
-BookList.propTypes = {
+BookIndex.propTypes = {
   books: PropTypes.array.isRequired,
   handleDeleteButton: PropTypes.func.isRequired,
   handleEditButton: PropTypes.func.isRequired
 };
 
-export default BookList;
+export default BookIndex;
