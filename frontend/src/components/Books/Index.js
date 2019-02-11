@@ -48,8 +48,8 @@ class BookList extends React.Component {
 
         <TableHeaderColumn dataField="isbn">ISBN</TableHeaderColumn>
 
-        <TableHeaderColumn dataField="description" columnTitle>
-          Description
+        <TableHeaderColumn dataField="notes" columnTitle>
+          Notes
         </TableHeaderColumn>
 
         <TableHeaderColumn
