@@ -37,6 +37,13 @@ export class IndexContainer extends React.Component {
     }
   };
 
+  handleShowBook = bookId => {
+    if (bookId) {
+      this.props.action.getBookAction(bookId);
+      this.props.history.push(`/books/${bookId}`);
+    }
+  }
+
   render() {
     const { books } = this.props;
 
@@ -72,6 +79,7 @@ export class IndexContainer extends React.Component {
               books={books}
               handleDeleteButton={this.handleDeleteBook}
               handleEditButton={this.handleEditBook}
+              handleShowButton={this.handleShowBook}
             />
           </div>
         </div>

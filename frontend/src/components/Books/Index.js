@@ -10,6 +10,12 @@ const buttonFormatter = (cell, row, props) => {
   return (
     <div>
       <button
+        className="btn btn-light mr-2"
+        onClick={() => props.handleShowButton(row.id)}
+      >
+        <i className="fa fa-eye" aria-hidden="true" /> Show
+      </button>
+      <button
         className="btn btn-warning mr-2"
         onClick={() => props.handleEditButton(row.id)}
       >
