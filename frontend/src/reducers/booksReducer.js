@@ -54,6 +54,37 @@ const booksReducer = (state = initialState.booksReducer, action) => {
         error: action.error
       };
     }
+    case ActionType.CREATE_BOOK: {
+      return {
+        ...state,
+        loading: true,
+        error: false
+      };
+    }
+    case ActionType.CREATE_BOOK_SUCCESS: {
+      let updatedBooks = _.assign(state.books);
+      updatedBooks.push(action.book);
+
+      return {
+        ...state,
+        books: _.assign(updatedBooks),
+        loading: false,
+        error: false
+      };
+    }
+    case ActionType.CREATE_BOOK_FAILURE: {
+      return {
+        ...state,
+        loading: false,
+        error: action.error
+      };
+    }
+    case ActionType.RESET_BOOK: {
+      return {
+        ...state,
+        book: {}
+      };
+    }
     default: {
       return state;
     }

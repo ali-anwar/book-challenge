@@ -2,6 +2,7 @@ export default {
   booksReducer: {
     books: [],
     loading: false,
-    error: false
+    error: false,
+    book: {}
   }
 };

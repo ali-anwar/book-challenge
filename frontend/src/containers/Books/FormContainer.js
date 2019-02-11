@@ -1,0 +1,70 @@
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import toastr from "toastr";
+import * as BookActions from "../../actions/BookActions";
+import BookForm from "../../components/Books/Form"; // eslint-disable-line import/no-named-as-default
+
+export class FormContainer extends React.Component {
+  handleSave = values => {
+    const book = {
+      id: values.id,
+      title: values.title,
+      notes: values.notes,
+      isbn: values.isbn
+    };
+
+    this.props.action
+      .createBookAction(book)
+      .then(() => {
+        toastr.success("Book has been created successfully!");
+        this.props.history.push("/books");
+      })
+      .catch(error => {
+        toastr.error(error);
+      });
+  };
+
+  handleCancel = event => {
+    event.preventDefault();
+    this.props.action.resetBookAction();
+    this.props.history.replace("/books");
+  };
+
+  render() {
+    const heading = "Add new Book";
+
+    return (
+      <div className="container">
+        <BookForm
+          heading={heading}
+          handleSave={this.handleSave}
+          handleCancel={this.handleCancel}
+          initialValues={this.props.initialValues}
+        />
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  books: state.booksReducer.books,
+  initialValues: state.booksReducer.book
+});
+
+const mapDispatchToProps = dispatch => ({
+  action: bindActionCreators(BookActions, dispatch)
+});
+
+FormContainer.propTypes = {
+  action: PropTypes.object.isRequired,
+  history: PropTypes.object,
+  initialValues: PropTypes.object,
+  match: PropTypes.object.isRequired
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FormContainer);

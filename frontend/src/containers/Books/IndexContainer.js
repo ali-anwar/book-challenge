@@ -12,6 +12,10 @@ export class IndexContainer extends React.Component {
       toastr.error(error);
     });
   }
+  handleAddBook = () => {
+    this.props.action.resetBookAction();
+    this.props.history.push("/books/new");
+  };
 
   handleDeleteBook = bookId => {
     if (bookId) {
@@ -38,6 +42,20 @@ export class IndexContainer extends React.Component {
         <div className="row mt-3">
           <div className="col">
             <h1>Books</h1>
+          </div>
+        </div>
+
+        <div className="row mt-3">
+          <div className="col">
+            <div className="btn-group" role="group">
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={this.handleAddBook}
+              >
+                <i className="fa fa-plus" aria-hidden="true" /> New
+              </button>
+            </div>
           </div>
         </div>
 

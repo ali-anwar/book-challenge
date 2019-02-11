@@ -32,7 +32,13 @@ const books = [
     notes: "HTML5"
   }
 ];
+function replaceAll(str, find, replace) {
+  return str.replace(new RegExp(find, "g"), replace);
+}
 
+const generateId = book => {
+  return replaceAll(book.title, " ", "-");
+};
 class BookApi {
   static getAllBooks() {
     return new Promise(resolve => {
@@ -48,6 +54,25 @@ class BookApi {
         const indexOfBookToDelete = books.findIndex(book => book.id === bookId);
         books.splice(indexOfBookToDelete, 1);
         resolve();
+      }, delay);
+    });
+  }
+
+  static saveBook(book) {
+    book = Object.assign({}, book);
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (book.id) {
+          const existingBookIndex = books.findIndex(
+            existingBook => existingBook.id === book.id
+          );
+          books.splice(existingBookIndex, 1, book);
+        } else {
+          book.id = generateId(book);
+          books.push(book);
+        }
+
+        resolve(book);
       }, delay);
     });
   }
