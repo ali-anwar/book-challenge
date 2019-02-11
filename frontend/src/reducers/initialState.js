@@ -1,1 +1,7 @@
-export default {};
+export default {
+  booksReducer: {
+    books: [],
+    loading: false,
+    error: false
+  }
+};
