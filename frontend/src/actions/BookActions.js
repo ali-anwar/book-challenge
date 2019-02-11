@@ -44,6 +44,26 @@ export function createBookAction(book) {
       });
   };
 }
+export function updateBookAction(book) {
+  return dispatch => {
+    dispatch(updateBook);
+
+    return BookApi.saveBook(book)
+      .then(book => {
+        dispatch(updateBookSuccess(book));
+      })
+      .catch(error => {
+        dispatch(updateBookFailure(error));
+        throw error;
+      });
+  };
+}
+
+export function getBookAction(bookId) {
+  return dispatch => {
+    dispatch(getBook(bookId));
+  };
+}
 
 export function resetBookAction() {
   return dispatch => {
@@ -94,5 +114,24 @@ export const createBookSuccess = book => ({
 
 export const createBookFailure = error => ({
   type: ActionType.CREATE_BOOK_FAILURE,
+  error
+});
+
+export const getBook = bookId => ({
+  type: ActionType.GET_BOOK,
+  bookId
+});
+
+export const updateBook = {
+  type: ActionType.UPDATE_BOOK
+};
+
+export const updateBookSuccess = book => ({
+  type: ActionType.UPDATE_BOOK_SUCCESS,
+  book
+});
+
+export const updateBookFailure = error => ({
+  type: ActionType.UPDATE_BOOK_FAILURE,
   error
 });

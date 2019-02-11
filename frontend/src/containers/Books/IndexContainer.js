@@ -17,6 +17,13 @@ export class IndexContainer extends React.Component {
     this.props.history.push("/books/new");
   };
 
+  handleEditBook = bookId => {
+    if (bookId) {
+      this.props.action.getBookAction(bookId);
+      this.props.history.push(`/books/${bookId}/edit`);
+    }
+  };
+
   handleDeleteBook = bookId => {
     if (bookId) {
       this.props.action
@@ -64,6 +71,7 @@ export class IndexContainer extends React.Component {
             <BookIndex
               books={books}
               handleDeleteButton={this.handleDeleteBook}
+              handleEditButton={this.handleEditBook}
             />
           </div>
         </div>

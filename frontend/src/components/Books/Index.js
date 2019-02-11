@@ -9,6 +9,12 @@ const buttonFormatter = (cell, row, props) => {
   return (
     <div>
       <button
+        className="btn btn-warning mr-2"
+        onClick={() => props.handleEditButton(row.id)}
+      >
+        <i className="fa fa-pencil" aria-hidden="true" /> Edit
+      </button>
+      <button
         className="btn btn-danger"
         onClick={() => props.handleDeleteButton(row.id)}
       >
@@ -66,7 +72,8 @@ class BookList extends React.Component {
 
 BookList.propTypes = {
   books: PropTypes.array.isRequired,
-  handleDeleteButton: PropTypes.func.isRequired
+  handleDeleteButton: PropTypes.func.isRequired,
+  handleEditButton: PropTypes.func.isRequired
 };
 
 export default BookList;

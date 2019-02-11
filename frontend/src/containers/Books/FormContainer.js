@@ -5,7 +5,6 @@ import { bindActionCreators } from "redux";
 import toastr from "toastr";
 import * as BookActions from "../../actions/BookActions";
 import BookForm from "../../components/Books/Form"; // eslint-disable-line import/no-named-as-default
-
 export class FormContainer extends React.Component {
   handleSave = values => {
     const book = {
@@ -15,15 +14,35 @@ export class FormContainer extends React.Component {
       isbn: values.isbn
     };
 
-    this.props.action
-      .createBookAction(book)
-      .then(() => {
-        toastr.success("Book has been created successfully!");
+    if (book.id) {
+      const bookBeingUpdated = this.props.books.find(book => book.id == values.id);
+
+      if (values == bookBeingUpdated) {
+        toastr.success("Book has been updated successfully!");
         this.props.history.push("/books");
-      })
-      .catch(error => {
-        toastr.error(error);
-      });
+        return;
+      }
+
+      this.props.action
+        .updateBookAction(book)
+        .then(() => {
+          toastr.success("Book has been updated successfully!");
+          this.props.history.push("/books");
+        })
+        .catch(error => {
+          toastr.error(error);
+        });
+    } else {
+      this.props.action
+        .createBookAction(book)
+        .then(() => {
+          toastr.success("Book has been created successfully!");
+          this.props.history.push("/books");
+        })
+        .catch(error => {
+          toastr.error(error);
+        });
+    }
   };
 
   handleCancel = event => {
@@ -33,7 +52,9 @@ export class FormContainer extends React.Component {
   };
 
   render() {
-    const heading = "Add new Book";
+    const { initialValues } = this.props;
+    const heading =
+      initialValues && initialValues.id ? "Edit Book" : "Add new Book";
 
     return (
       <div className="container">
@@ -41,7 +62,8 @@ export class FormContainer extends React.Component {
           heading={heading}
           handleSave={this.handleSave}
           handleCancel={this.handleCancel}
-          initialValues={this.props.initialValues}
+          initialValues={initialValues}
+          currentBooks={this.props.books}
         />
       </div>
     );
