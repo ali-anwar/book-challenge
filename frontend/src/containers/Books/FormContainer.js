@@ -6,6 +6,21 @@ import toastr from "toastr";
 import * as BookActions from "../../actions/BookActions";
 import BookForm from "../../components/Books/Form"; // eslint-disable-line import/no-named-as-default
 export class FormContainer extends React.Component {
+  componentDidMount() {
+    let bookId = Number(this.props.match.params.id);
+
+    if(bookId) {
+      let book = this.props.books.find(bookBeingUpdated => bookBeingUpdated.id === bookId)
+      if (book) {
+        this.props.action.getBookAction(book);
+      } else {
+        this.props.action.resetBookAction();
+        this.props.history.replace('/books');
+        toastr.error('Book does not exist');
+      }
+    }
+  }
+
   handleSave = values => {
     const book = {
       id: values.id,
