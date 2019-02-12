@@ -3,6 +3,16 @@ import PropTypes from "prop-types";
 import { Field, reduxForm } from "redux-form";
 import FieldInput from "../Common/FieldInput";
 import * as Validations from "../../config/fieldLength";
+import { EDIT_BOOK } from '../../config/formHeadings';
+import { CREATE_BOOK, UPDATE_BOOK } from '../../config/formButtons';
+
+const submitButtonText = heading => {
+  if (heading == EDIT_BOOK) {
+    return UPDATE_BOOK;
+  } else {
+    return CREATE_BOOK;
+  }
+}
 
 export const BookForm = ({
   handleSubmit,
@@ -52,7 +62,7 @@ export const BookForm = ({
                   className="btn btn-primary"
                 >
                   <i className="fa fa-paper-plane-o" aria-hidden="true" />{" "}
-                  Submit
+                  {submitButtonText(heading)}
                 </button>
 
                 <button

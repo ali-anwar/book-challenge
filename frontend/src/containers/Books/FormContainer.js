@@ -5,6 +5,7 @@ import { bindActionCreators } from "redux";
 import toastr from "toastr";
 import * as BookActions from "../../actions/BookActions";
 import BookForm from "../../components/Books/Form"; // eslint-disable-line import/no-named-as-default
+import { EDIT_BOOK, ADD_BOOK } from '../../config/formHeadings';
 export class FormContainer extends React.Component {
   componentDidMount() {
     let bookId = Number(this.props.match.params.id);
@@ -71,7 +72,7 @@ export class FormContainer extends React.Component {
   render() {
     const { initialValues } = this.props;
     const heading =
-      initialValues && initialValues.id ? "Edit Book" : "Add new Book";
+      initialValues && initialValues.id ? EDIT_BOOK : ADD_BOOK;
 
     return (
       <div className="jumbotron vertical-center custom-container">
