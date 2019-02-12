@@ -7,6 +7,18 @@ import * as BookActions from "../../actions/BookActions";
 import BookShow from "../../components/Books/Show"; // eslint-disable-line import/no-named-as-default
 
 export class ShowContainer extends React.Component {
+  componentDidMount() {
+    this.props.action.getBookAction(this.props.match.params.id);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(!nextProps.book.id) {
+      this.props.action.resetBookAction();
+      this.props.history.replace("/books");
+      toastr.error("Book does not exist");
+    }
+  }
+
   handleBooksIndex = () => {
     this.props.action.resetBookAction();
     this.props.history.replace("/books");
