@@ -10,9 +10,9 @@ export class FormContainer extends React.Component {
     let bookId = Number(this.props.match.params.id);
 
     if(bookId) {
-      let book = this.props.books.find(bookBeingUpdated => bookBeingUpdated.id === bookId)
+      let book = this.props.books.find(bookBeingUpdated => bookBeingUpdated.id === bookId);
       if (book) {
-        this.props.action.getBookAction(book);
+        this.props.action.getBookAction(book.id);
       } else {
         this.props.action.resetBookAction();
         this.props.history.replace('/books');
