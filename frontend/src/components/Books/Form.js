@@ -14,29 +14,57 @@ export const BookForm = ({
   handleCancel
 }) => {
   return (
-    <form onSubmit={handleSubmit(handleSave)}>
-      <h1>{heading}</h1>
+    <div className="row h-100">
+      <div className="col-sm-12 align-self-center">
+        <div className="card">
+          <div className="card-container">
+            <form onSubmit={handleSubmit(handleSave)}>
+              <h1>{heading}</h1>
 
-      <Field type="text" name="title" label="Title" component={FieldInput} />
+              <Field
+                type="text"
+                name="title"
+                label="Title"
+                component={FieldInput}
+              />
 
-      <Field type="text" name="isbn" label="ISBN" component={FieldInput} />
+              <Field
+                type="text"
+                name="isbn"
+                label="ISBN"
+                component={FieldInput}
+              />
 
-      <Field type="text" name="notes" label="Notes" component={FieldInput} />
+              <Field
+                type="text"
+                name="notes"
+                label="Notes"
+                component={FieldInput}
+              />
 
-      <div>
-        <button type="submit" disabled={submitting} className="btn btn-primary">
-          <i className="fa fa-paper-plane-o" aria-hidden="true" /> Submit
-        </button>
+              <div>
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="btn btn-primary"
+                >
+                  <i className="fa fa-paper-plane-o" aria-hidden="true" />{" "}
+                  Submit
+                </button>
 
-        <button
-          type="button"
-          className="btn btn-default btn-space"
-          onClick={handleCancel}
-        >
-          Cancel
-        </button>
+                <button
+                  type="button"
+                  className="btn btn-light pull-right"
+                  onClick={handleCancel}
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
-    </form>
+    </div>
   );
 };
 
@@ -65,10 +93,7 @@ const validate = values => {
     errors.isbn = `ISBN is too short, it should be at least ${Validations.ISBN_MIN_LENGTH} characters`;
   }
 
-  if (
-    values.notes &&
-    values.notes.length > Validations.NOTES_MAX_LENGTH
-  ) {
+  if (values.notes && values.notes.length > Validations.NOTES_MAX_LENGTH) {
     errors.notes = `Notes are too long, it should not be longer than ${Validations.NOTES_MAX_LENGTH} characters`;
   } else if (
     values.notes &&

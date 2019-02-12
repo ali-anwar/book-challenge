@@ -10,10 +10,12 @@ const FieldInput = ({
   meta: { touched, error, warning }
 }) => {
   return (
-    <div className="form-group">
-      <label htmlFor={name}>{label}</label>
+    <div className="form-group row validate-input">
+      <label className="col-form-label col-sm-2" htmlFor={name}>
+        {label}
+      </label>
 
-      <div className="field">
+      <div className="col-sm-10">
         <input
           {...input}
           type={type}
@@ -23,8 +25,8 @@ const FieldInput = ({
         />
 
         {touched &&
-          ((error && <p className="text-danger">{error}</p>) ||
-            (warning && <p className="text-danger">{warning}</p>))}
+          ((error && <div className="text-danger">{error}</div>) ||
+            (warning && <div className="text-danger">{warning}</div>))}
       </div>
     </div>
   );

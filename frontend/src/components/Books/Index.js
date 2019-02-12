@@ -10,19 +10,19 @@ const buttonFormatter = (cell, row, props) => {
   return (
     <div>
       <button
-        className="btn btn-light mr-2"
+        className="btn btn-sm btn-light mr-2"
         onClick={() => props.handleShowButton(row.id)}
       >
         <i className="fa fa-eye" aria-hidden="true" /> Show
       </button>
       <button
-        className="btn btn-warning mr-2"
+        className="btn btn-sm btn-warning mr-2"
         onClick={() => props.handleEditButton(row.id)}
       >
         <i className="fa fa-pencil" aria-hidden="true" /> Edit
       </button>
       <button
-        className="btn btn-danger"
+        className="btn btn-sm btn-danger"
         onClick={() => props.handleDeleteButton(row.id)}
       >
         <i className="fa fa-trash" aria-hidden="true" /> Delete
@@ -31,15 +31,9 @@ const buttonFormatter = (cell, row, props) => {
   );
 };
 
-const BookIndex = (props) => {
+const BookIndex = props => {
   return (
-    <BootstrapTable
-      data={props.books}
-      bordered={false}
-      striped
-      hover
-      condensed
-    >
+    <BootstrapTable data={props.books} bordered={false} striped hover condensed>
       <TableHeaderColumn dataField="id" isKey hidden>
         Id
       </TableHeaderColumn>

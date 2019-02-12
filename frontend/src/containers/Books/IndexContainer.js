@@ -41,7 +41,7 @@ export class IndexContainer extends React.Component {
     if (bookId) {
       this.props.history.push(`/books/${bookId}`);
     }
-  }
+  };
 
   render() {
     const { books } = this.props;
@@ -51,35 +51,42 @@ export class IndexContainer extends React.Component {
     }
 
     return (
-      <div className="container-fluid">
-        <div className="row mt-3">
-          <div className="col">
-            <h1>Books</h1>
-          </div>
-        </div>
+      <div class="jumbotron vertical-center custom-container">
+        <div class="container">
+          <div className="row h-100">
+            <div className="col-sm-12 align-self-center">
+              <div className="card">
+                <div className="card-container">
+                  <div className="row mt-3">
+                    <div className="col-sm-10">
+                      <h1>Books</h1>
+                    </div>
+                    <div className="col-sm-2">
+                      <button
+                        type="button"
+                        className="btn btn-primary pull-right mt-10"
+                        onClick={this.handleAddBook}
+                      >
+                        <i className="fa fa-plus" aria-hidden="true" /> New
+                      </button>
+                    </div>
+                  </div>
 
-        <div className="row mt-3">
-          <div className="col">
-            <div className="btn-group" role="group">
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={this.handleAddBook}
-              >
-                <i className="fa fa-plus" aria-hidden="true" /> New
-              </button>
+                  <div className="row">
+                    <div className="col">
+                      <div className="scroll-container">
+                        <BookIndex
+                          books={books}
+                          handleDeleteButton={this.handleDeleteBook}
+                          handleEditButton={this.handleEditBook}
+                          handleShowButton={this.handleShowBook}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="col">
-            <BookIndex
-              books={books}
-              handleDeleteButton={this.handleDeleteBook}
-              handleEditButton={this.handleEditBook}
-              handleShowButton={this.handleShowBook}
-            />
           </div>
         </div>
       </div>

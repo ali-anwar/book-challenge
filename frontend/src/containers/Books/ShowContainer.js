@@ -12,7 +12,7 @@ export class ShowContainer extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(!nextProps.book.id) {
+    if (!nextProps.book.id) {
       this.props.action.resetBookAction();
       this.props.history.replace("/books");
       toastr.error("Book does not exist");
@@ -45,13 +45,15 @@ export class ShowContainer extends React.Component {
 
   render() {
     return (
-      <div className="container">
-        <BookShow
-          handleDeleteButton={this.handleDeleteBook}
-          handleIndexButton={this.handleBooksIndex}
-          handleEditButton={this.handleEditBook}
-          book={this.props.book}
-        />
+      <div class="jumbotron vertical-center custom-container">
+        <div class="container">
+          <BookShow
+            handleDeleteButton={this.handleDeleteBook}
+            handleIndexButton={this.handleBooksIndex}
+            handleEditButton={this.handleEditBook}
+            book={this.props.book}
+          />
+        </div>
       </div>
     );
   }

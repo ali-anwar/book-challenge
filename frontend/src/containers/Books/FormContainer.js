@@ -15,7 +15,9 @@ export class FormContainer extends React.Component {
     };
 
     if (book.id) {
-      const bookBeingUpdated = this.props.books.find(book => book.id === values.id);
+      const bookBeingUpdated = this.props.books.find(
+        book => book.id === values.id
+      );
 
       if (values === bookBeingUpdated) {
         toastr.success("Book has been updated successfully!");
@@ -57,14 +59,16 @@ export class FormContainer extends React.Component {
       initialValues && initialValues.id ? "Edit Book" : "Add new Book";
 
     return (
-      <div className="container">
-        <BookForm
-          heading={heading}
-          handleSave={this.handleSave}
-          handleCancel={this.handleCancel}
-          initialValues={initialValues}
-          currentBooks={this.props.books}
-        />
+      <div class="jumbotron vertical-center custom-container">
+        <div class="container">
+          <BookForm
+            heading={heading}
+            handleSave={this.handleSave}
+            handleCancel={this.handleCancel}
+            initialValues={initialValues}
+            currentBooks={this.props.books}
+          />
+        </div>
       </div>
     );
   }

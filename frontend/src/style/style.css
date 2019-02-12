@@ -1,3 +1,72 @@
+body {
+  background-color: #e9ecef !important;
+}
+
 .btn-space {
   margin-left: 20px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.jumbotron.custom-container {
+  height: 100vh;
+  margin-bottom: 0px;
+}
+
+.jumbotron.custom-container h1 {
+  font-size: 36px;
+}
+
+.jumbotron.custom-container h2 {
+  font-size: 28px;
+}
+
+.jumbotron.custom-container h3 {
+  font-size: 22px;
+}
+
+.jumbotron.custom-container .card-container {
+  padding: 20px;
+}
+
+.jumbotron.custom-container .card-container .scroll-container {
+  height: 600px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+.validate-input.form-group {
+  margin-bottom: 20px;
+}
+
+.validate-input {
+  position: relative;
+}
+
+.validate-input .text-danger {
+  position: absolute;
+  font-size: 10px;
+}
+
+.jumbotron.custom-container h1 {
+  margin-bottom: 20px;
+}
+
+.jumbotron.custom-container .react-bs-table table td {
+  white-space: normal;
+}
+
+.show-container {
+  padding-bottom: 30px;
 }
