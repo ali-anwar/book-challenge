@@ -7,7 +7,7 @@ import { EDIT_BOOK } from '../../config/formHeadings';
 import { CREATE_BOOK, UPDATE_BOOK } from '../../config/formButtons';
 
 const submitButtonText = heading => {
-  if (heading == EDIT_BOOK) {
+  if (heading === EDIT_BOOK) {
     return UPDATE_BOOK;
   } else {
     return CREATE_BOOK;
