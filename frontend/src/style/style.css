@@ -70,3 +70,8 @@ body {
 .show-container {
   padding-bottom: 30px;
 }
+
+.required-asterisk {
+  color: red;
+  display: inline-block;
+}

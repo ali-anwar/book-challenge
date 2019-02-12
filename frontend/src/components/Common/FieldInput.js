@@ -1,19 +1,35 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+const labelContent = (label, requiredField, name) => {
+  if (requiredField) {
+    return (
+      <label className="col-form-label col-sm-2" htmlFor={name}>
+        {label}
+        <p className="required-asterisk">*</p>
+      </label>
+    );
+  } else {
+    return (
+      <label className="col-form-label col-sm-2" htmlFor={name}>
+        {label}
+      </label>
+    );
+  }
+};
+
 const FieldInput = ({
   input,
   type,
   name,
   label,
   placeholder,
+  requiredField,
   meta: { touched, error, warning }
 }) => {
   return (
     <div className="form-group row validate-input">
-      <label className="col-form-label col-sm-2" htmlFor={name}>
-        {label}
-      </label>
+      {labelContent(label, requiredField, name)}
 
       <div className="col-sm-10">
         <input

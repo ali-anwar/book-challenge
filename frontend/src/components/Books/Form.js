@@ -25,6 +25,7 @@ export const BookForm = ({
                 type="text"
                 name="title"
                 label="Title"
+                requiredField={true}
                 component={FieldInput}
               />
 
@@ -32,6 +33,7 @@ export const BookForm = ({
                 type="text"
                 name="isbn"
                 label="ISBN"
+                requiredField={true}
                 component={FieldInput}
               />
 
@@ -39,6 +41,7 @@ export const BookForm = ({
                 type="text"
                 name="notes"
                 label="Notes"
+                requiredField={false}
                 component={FieldInput}
               />
 
