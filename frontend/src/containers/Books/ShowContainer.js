@@ -28,9 +28,9 @@ export class ShowContainer extends React.Component {
     this.props.action
       .deleteBookAction(this.props.book.id)
       .then(() => {
-        this.props.action.resetBookAction();
         toastr.success("Book has been deleted successfully!");
         this.props.history.replace("/books");
+        this.props.action.resetBookAction();
       })
       .catch(error => {
         toastr.error(error);
