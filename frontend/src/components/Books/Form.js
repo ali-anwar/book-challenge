@@ -130,5 +130,6 @@ BookForm.propTypes = {
 
 export default reduxForm({
   form: "BookForm",
+  enableReinitialize: true,
   validate
 })(BookForm);
