@@ -32,6 +32,21 @@ const actionButtons = props => {
   );
 };
 
+const renderNotes = notes => {
+  if (notes) {
+    return (
+      <div className="row">
+        <div className="col-md-1 col-sm-1 col-lg-1 col-xs-1">
+          <b>Notes:</b>
+        </div>
+        <div className="col-md-11 col-sm-11 col-lg-11 col-xs-11">
+          {notes}
+        </div>
+      </div>
+    );
+  }
+};
+
 const BookShow = props => {
   return (
     <div className="row h-100">
@@ -50,15 +65,7 @@ const BookShow = props => {
                   {props.book.isbn}
                 </div>
               </div>
-
-              <div className="row">
-                <div className="col-md-1 col-sm-1 col-lg-1 col-xs-1">
-                  <b>Notes:</b>
-                </div>
-                <div className="col-md-11 col-sm-11 col-lg-11 col-xs-11">
-                  {props.book.notes}
-                </div>
-              </div>
+              {renderNotes(props.book.notes)}
             </div>
             {actionButtons(props)}
           </div>
