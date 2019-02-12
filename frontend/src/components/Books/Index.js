@@ -1,20 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
+import { Link } from "react-router-dom";
 
 const titleFormatter = (cell, row) => {
-  return `${cell}`;
+  return <Link to={`/books/${row.id}`}>{row.title}</Link>;
 };
 
 const buttonFormatter = (cell, row, props) => {
   return (
     <div>
-      <button
-        className="btn btn-sm btn-light mr-2"
-        onClick={() => props.handleShowButton(row.id)}
-      >
-        <i className="fa fa-eye" aria-hidden="true" /> Show
-      </button>
       <button
         className="btn btn-sm btn-warning mr-2"
         onClick={() => props.handleEditButton(row.id)}
