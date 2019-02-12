@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 import PageNotFound from "../components/Common/PageNotFound";
 import createBrowserHistory from "history/createBrowserHistory";
 import BookIndexContainer from "./Books/IndexContainer"; // eslint-disable-line import/no-named-as-default
