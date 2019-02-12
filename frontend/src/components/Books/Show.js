@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 
 const actionButtons = props => {
   return (
-    <div class="row">
-      <div class="col-sm-4 col-md-4 col-lg-4 col-xs-4 pull-left">
+    <div className="row">
+      <div className="col-sm-4 col-md-4 col-lg-4 col-xs-4 pull-left">
         <button
           className="btn btn-warning mr-2"
           onClick={() => props.handleEditButton()}
@@ -12,7 +12,7 @@ const actionButtons = props => {
           <i className="fa fa-pencil" aria-hidden="true" /> Edit
         </button>
       </div>
-      <div class="col-sm-4 col-md-4 col-lg-4 col-xs-4 text-center">
+      <div className="col-sm-4 col-md-4 col-lg-4 col-xs-4 text-center">
         <button
           className="btn btn-danger mr-2"
           onClick={() => props.handleDeleteButton()}
@@ -20,7 +20,7 @@ const actionButtons = props => {
           <i className="fa fa-trash" aria-hidden="true" /> Delete
         </button>
       </div>
-      <div class="col-sm-4 col-md-4 col-lg-4 col-xs-4">
+      <div className="col-sm-4 col-md-4 col-lg-4 col-xs-4">
         <button
           className="btn btn-light pull-right"
           onClick={() => props.handleIndexButton()}

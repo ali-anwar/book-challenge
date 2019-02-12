@@ -45,8 +45,8 @@ export class ShowContainer extends React.Component {
 
   render() {
     return (
-      <div class="jumbotron vertical-center custom-container">
-        <div class="container">
+      <div className="jumbotron vertical-center custom-container">
+        <div className="container">
           <BookShow
             handleDeleteButton={this.handleDeleteBook}
             handleIndexButton={this.handleBooksIndex}

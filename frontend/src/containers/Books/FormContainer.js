@@ -59,8 +59,8 @@ export class FormContainer extends React.Component {
       initialValues && initialValues.id ? "Edit Book" : "Add new Book";
 
     return (
-      <div class="jumbotron vertical-center custom-container">
-        <div class="container">
+      <div className="jumbotron vertical-center custom-container">
+        <div className="container">
           <BookForm
             heading={heading}
             handleSave={this.handleSave}
