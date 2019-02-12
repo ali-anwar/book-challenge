@@ -13,20 +13,14 @@ class Api::V1::BooksController < ApplicationController
 
   def create
     book = Book.new(book_params)
+    book.save
 
-    if book.save
-      render json: book, status: :created, location: @book
-    else
-      render json: book.errors, status: :unprocessable_entity
-    end
+    render_response(book)
   end
 
   def update
-    if @book.update(book_params)
-      render json: @book
-    else
-      render json: @book.errors, status: :unprocessable_entity
-    end
+    @book.update(book_params)
+    render_response(@book)
   end
 
   def destroy
