@@ -116,7 +116,9 @@ const booksReducer = (state = initialState.booksReducer, action) => {
     case ActionType.GET_BOOK: {
       return {
         ...state,
-        book: _.assign(state.books.find(book => book.id === action.bookId))
+        book: _.assign(
+          state.books.find(book => book.id === Number(action.bookId))
+        )
       };
     }
     default: {

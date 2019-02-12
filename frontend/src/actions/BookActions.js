@@ -1,11 +1,12 @@
 import * as ActionType from "./ActionType";
-import BookApi from "../api/BookApi";
+import Api from "../lib/Api";
+import { makeRequest } from "../lib/requestWrapper";
 
 export function getBooksAction() {
   return dispatch => {
     dispatch(getBooks);
 
-    return BookApi.getAllBooks()
+    return makeRequest(Api.get("/api/v1/books"))
       .then(books => {
         dispatch(getBooksSuccess(books));
       })
@@ -20,7 +21,7 @@ export function deleteBookAction(bookId) {
   return dispatch => {
     dispatch(deleteBook);
 
-    return BookApi.deleteBook(bookId)
+    return makeRequest(Api.delete(`/api/v1/books/${bookId}`))
       .then(() => {
         dispatch(deleteBookSuccess(bookId));
       })
@@ -34,7 +35,7 @@ export function createBookAction(book) {
   return dispatch => {
     dispatch(createBook);
 
-    return BookApi.saveBook(book)
+    return makeRequest(Api.post("/api/v1/books", book))
       .then(book => {
         dispatch(createBookSuccess(book));
       })
@@ -48,7 +49,7 @@ export function updateBookAction(book) {
   return dispatch => {
     dispatch(updateBook);
 
-    return BookApi.saveBook(book)
+    return makeRequest(Api.put(`/api/v1/books/${book.id}`, book))
       .then(book => {
         dispatch(updateBookSuccess(book));
       })
