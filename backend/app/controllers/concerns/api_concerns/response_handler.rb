@@ -15,7 +15,7 @@ module ApiConcerns
       render json: {
         errors:
           {
-            'message': exception
+            'messages': [exception]
           }
       }, status: 404
     end
@@ -24,7 +24,7 @@ module ApiConcerns
       render json: {
         errors:
           {
-            'message': message.full_messages || 'Unprocessable Entity'
+            'messages': message.full_messages || ['Unprocessable Entity']
           }
       }, status: 422
     end
@@ -33,13 +33,18 @@ module ApiConcerns
       render json: {
         errors:
           {
-            'message': 'You are not authorized to perform this action'
+            'messages': ['You are not authorized to perform this action']
           }
       }, status: 403
     end
 
-    def render_400(payload)
-      render json: payload, status: :bad_request
+    def render_400(message)
+      render json: {
+        errors:
+          {
+            'messages': [message]
+          }
+      }, status: 400
     end
   end
 end

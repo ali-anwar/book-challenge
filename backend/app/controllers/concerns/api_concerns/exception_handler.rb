@@ -13,7 +13,7 @@ module ApiConcerns
       end
 
       rescue_from ActionController::ParameterMissing do |e|
-        render_400(message: e.message)
+        render_400(e.message)
       end
     end
   end
