@@ -51,8 +51,8 @@ export class IndexContainer extends React.Component {
     }
 
     return (
-      <div class="jumbotron vertical-center custom-container">
-        <div class="container">
+      <div className="jumbotron vertical-center custom-container">
+        <div className="container">
           <div className="row h-100">
             <div className="col-sm-12 align-self-center">
               <div className="card">
