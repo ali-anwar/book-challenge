@@ -67,6 +67,10 @@ body {
   white-space: normal;
 }
 
+.jumbotron.custom-container .react-bs-table table td:focus {
+  outline-width: 0px !important;
+}
+
 .show-container {
   padding-bottom: 30px;
 }
