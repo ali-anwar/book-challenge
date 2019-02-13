@@ -43,10 +43,6 @@ const BookIndex = props => {
 
       <TableHeaderColumn dataField="isbn">ISBN</TableHeaderColumn>
 
-      <TableHeaderColumn dataField="notes" columnTitle>
-        Notes
-      </TableHeaderColumn>
-
       <TableHeaderColumn
         dataField="button"
         dataFormat={buttonFormatter}
