@@ -108,11 +108,6 @@ const validate = values => {
 
   if (values.notes && values.notes.length > Validations.NOTES_MAX_LENGTH) {
     errors.notes = `Notes are too long, it should not be longer than ${Validations.NOTES_MAX_LENGTH} characters`;
-  } else if (
-    values.notes &&
-    values.notes.length < Validations.NOTES_MIN_LENGTH
-  ) {
-    errors.notes = `Notes are too short, it should be at least ${Validations.NOTES_MIN_LENGTH} characters`;
   }
 
   return errors;
