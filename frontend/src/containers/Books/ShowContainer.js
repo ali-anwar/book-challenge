@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import toastr from "toastr";
 import * as BookActions from "../../actions/BookActions";
 import BookShow from "../../components/Books/Show"; // eslint-disable-line import/no-named-as-default
+import { renderErrors, renderSuccess } from "../../lib/renderNotifications";
 
 export class ShowContainer extends React.Component {
   componentDidMount() {
@@ -13,9 +13,10 @@ export class ShowContainer extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (!nextProps.book.id) {
+      let errorMessages = ["Book does not exist"];
       this.props.action.resetBookAction();
       this.props.history.replace("/books");
-      toastr.error("Book does not exist");
+      renderErrors(errorMessages);
     }
   }
 
@@ -28,12 +29,12 @@ export class ShowContainer extends React.Component {
     this.props.action
       .deleteBookAction(this.props.book.id)
       .then(() => {
-        toastr.success("Book has been deleted successfully!");
+        renderSuccess("Book has been deleted successfully!");
         this.props.history.replace("/books");
         this.props.action.resetBookAction();
       })
       .catch(error => {
-        toastr.error(error);
+        renderErrors(error.errors.messages);
       });
   };
 

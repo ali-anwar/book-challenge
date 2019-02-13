@@ -2,14 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import toastr from "toastr";
 import * as BookActions from "../../actions/BookActions";
 import BookIndex from "../../components/Books/Index";
+import { renderErrors, renderSuccess } from "../../lib/renderNotifications";
 
 export class IndexContainer extends React.Component {
   componentDidMount() {
     this.props.action.getBooksAction().catch(error => {
-      toastr.error(error);
+      renderErrors(error.errors.messages);
     });
   }
   handleAddBook = () => {
@@ -29,10 +29,10 @@ export class IndexContainer extends React.Component {
       this.props.action
         .deleteBookAction(bookId)
         .then(() => {
-          toastr.success("Book has been deleted successfully!");
+          renderSuccess("Book has been deleted successfully!");
         })
         .catch(error => {
-          toastr.error(error);
+          renderErrors(error.errors.messages);
         });
     }
   };

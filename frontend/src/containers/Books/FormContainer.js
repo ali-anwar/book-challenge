@@ -2,22 +2,25 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import toastr from "toastr";
 import * as BookActions from "../../actions/BookActions";
 import BookForm from "../../components/Books/Form"; // eslint-disable-line import/no-named-as-default
-import { EDIT_BOOK, ADD_BOOK } from '../../config/formHeadings';
+import { EDIT_BOOK, ADD_BOOK } from "../../config/formHeadings";
+import { renderErrors, renderSuccess } from "../../lib/renderNotifications";
 export class FormContainer extends React.Component {
   componentDidMount() {
     let bookId = Number(this.props.match.params.id);
 
-    if(bookId) {
-      let book = this.props.books.find(bookBeingUpdated => bookBeingUpdated.id === bookId);
+    if (bookId) {
+      let book = this.props.books.find(
+        bookBeingUpdated => bookBeingUpdated.id === bookId
+      );
       if (book) {
         this.props.action.getBookAction(book.id);
       } else {
+        let errorMessages = ["Book does not exist"];
         this.props.action.resetBookAction();
-        this.props.history.replace('/books');
-        toastr.error('Book does not exist');
+        this.props.history.replace("/books");
+        renderErrors(errorMessages);
       }
     }
   }
@@ -36,7 +39,7 @@ export class FormContainer extends React.Component {
       );
 
       if (values === bookBeingUpdated) {
-        toastr.success("Book has been updated successfully!");
+        renderSuccess("Book has been updated successfully!");
         this.props.history.push("/books");
         return;
       }
@@ -44,21 +47,21 @@ export class FormContainer extends React.Component {
       this.props.action
         .updateBookAction(book)
         .then(() => {
-          toastr.success("Book has been updated successfully!");
+          renderSuccess("Book has been updated successfully!");
           this.props.history.push("/books");
         })
         .catch(error => {
-          toastr.error(error);
+          renderErrors(error.errors.messages);
         });
     } else {
       this.props.action
         .createBookAction(book)
         .then(() => {
-          toastr.success("Book has been created successfully!");
+          renderSuccess("Book has been created successfully!");
           this.props.history.push("/books");
         })
         .catch(error => {
-          toastr.error(error);
+          renderErrors(error.errors.messages);
         });
     }
   };
@@ -71,8 +74,7 @@ export class FormContainer extends React.Component {
 
   render() {
     const { initialValues } = this.props;
-    const heading =
-      initialValues && initialValues.id ? EDIT_BOOK : ADD_BOOK;
+    const heading = initialValues && initialValues.id ? EDIT_BOOK : ADD_BOOK;
 
     return (
       <div className="jumbotron vertical-center custom-container">
