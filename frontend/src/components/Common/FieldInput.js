@@ -4,14 +4,14 @@ import PropTypes from "prop-types";
 const labelContent = (label, requiredField, name) => {
   if (requiredField) {
     return (
-      <label className="col-form-label col-sm-2" htmlFor={name}>
+      <label className="col-form-label col-sm-1" htmlFor={name}>
         {label}
         <p className="required-asterisk">*</p>
       </label>
     );
   } else {
     return (
-      <label className="col-form-label col-sm-2" htmlFor={name}>
+      <label className="col-form-label col-sm-1" htmlFor={name}>
         {label}
       </label>
     );
@@ -31,7 +31,7 @@ const FieldInput = ({
     <div className="form-group row validate-input">
       {labelContent(label, requiredField, name)}
 
-      <div className="col-sm-10">
+      <div className="col-sm-11">
         <input
           {...input}
           type={type}
