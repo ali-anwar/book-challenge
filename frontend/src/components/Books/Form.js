@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Field, reduxForm } from "redux-form";
 import FieldInput from "../Common/FieldInput";
+import TextAreaInput from "../Common/TextAreaInput";
 import * as Validations from "../../config/fieldLength";
 import { EDIT_BOOK } from '../../config/formHeadings';
 import { CREATE_BOOK, UPDATE_BOOK } from '../../config/formButtons';
@@ -48,11 +49,10 @@ export const BookForm = ({
               />
 
               <Field
-                type="text"
                 name="notes"
                 label="Notes"
                 requiredField={false}
-                component={FieldInput}
+                component={TextAreaInput}
               />
 
               <div>
