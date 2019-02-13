@@ -79,3 +79,7 @@ body {
   color: red;
   display: inline-block;
 }
+
+.display-linebreak {
+  white-space: pre-line;
+}
