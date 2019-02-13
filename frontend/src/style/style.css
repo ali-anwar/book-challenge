@@ -83,3 +83,7 @@ body {
 .display-linebreak {
   white-space: pre-line;
 }
+
+.m-b-15 {
+  margin-bottom: 15px;
+}

@@ -42,21 +42,25 @@ const renderNotes = notes => {
 
 const renderTitleRow = props => {
   return (
-    <div className="row">
-      <div className="col-sm-10 col-md-10 col-lg-10 col-xs-10">
-        <h1>
-          <b>{props.book.title}</b>
-        </h1>
+    <>
+      <div className="row m-b-15">
+        <div className="col-sm-12">
+          <button
+            className="btn btn-light pull-left"
+            onClick={() => props.handleIndexButton()}
+          >
+            <i className="fa fa-arrow-left" aria-hidden="true" /> Back
+          </button>
+        </div>
       </div>
-      <div className="col-sm-2 col-md-2 col-lg-2 col-xs-2">
-        <button
-          className="btn btn-light pull-right"
-          onClick={() => props.handleIndexButton()}
-        >
-          <i className="fa fa-arrow-left" aria-hidden="true" /> Back
-        </button>
+      <div className="row">
+        <div className="col-sm-12">
+          <h1>
+            <b>{props.book.title}</b>
+          </h1>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
