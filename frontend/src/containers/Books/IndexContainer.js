@@ -64,7 +64,7 @@ export class IndexContainer extends React.Component {
                     <div className="col-sm-2">
                       <button
                         type="button"
-                        className="btn btn-primary pull-right mt-5"
+                        className="btn btn-primary pull-right m-t-5"
                         onClick={this.handleAddBook}
                       >
                         <i className="fa fa-plus" aria-hidden="true" /> New
