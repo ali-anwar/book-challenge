@@ -12,20 +12,13 @@ const actionButtons = props => {
           <i className="fa fa-pencil" aria-hidden="true" /> Edit
         </button>
       </div>
-      <div className="col-sm-4 col-md-4 col-lg-4 col-xs-4 text-center">
+      <div className="col-sm-4 col-md-4 col-lg-4 col-xs-4" />
+      <div className="col-sm-4 col-md-4 col-lg-4 col-xs-4">
         <button
-          className="btn btn-danger mr-2"
+          className="btn btn-danger pull-right"
           onClick={() => props.handleDeleteButton()}
         >
           <i className="fa fa-trash" aria-hidden="true" /> Delete
-        </button>
-      </div>
-      <div className="col-sm-4 col-md-4 col-lg-4 col-xs-4">
-        <button
-          className="btn btn-light pull-right"
-          onClick={() => props.handleIndexButton()}
-        >
-          <i className="fa fa-list" aria-hidden="true" /> Books
         </button>
       </div>
     </div>
@@ -47,15 +40,33 @@ const renderNotes = notes => {
   }
 };
 
+const renderTitleRow = props => {
+  return (
+    <div className="row">
+      <div className="col-sm-10 col-md-10 col-lg-10 col-xs-10">
+        <h1>
+          <b>{props.book.title}</b>
+        </h1>
+      </div>
+      <div className="col-sm-2 col-md-2 col-lg-2 col-xs-2">
+        <button
+          className="btn btn-light pull-right"
+          onClick={() => props.handleIndexButton()}
+        >
+          <i className="fa fa-arrow-left" aria-hidden="true" /> Back
+        </button>
+      </div>
+    </div>
+  );
+};
+
 const BookShow = props => {
   return (
     <div className="row h-100">
       <div className="col-sm-12 align-self-center">
         <div className="card">
           <div className="card-container">
-            <h1>
-              <b>{props.book.title}</b>
-            </h1>
+            {renderTitleRow(props)}
             <div className="show-container">
               <div className="row">
                 <div className="col-md-1 col-sm-1 col-lg-1 col-xs-1">
