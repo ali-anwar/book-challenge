@@ -5,18 +5,19 @@ import { bindActionCreators } from "redux";
 import * as BookActions from "../../actions/BookActions";
 import BookShow from "../../components/Books/Show"; // eslint-disable-line import/no-named-as-default
 import { renderErrors, renderSuccess } from "../../lib/renderNotifications";
+import Spinner from "../../components/Common/Spinner";
+
 
 export class ShowContainer extends React.Component {
   componentDidMount() {
-    this.props.action.getBookAction(this.props.match.params.id);
-  }
+    let bookId = Number(this.props.match.params.id);
 
-  componentWillReceiveProps(nextProps) {
-    if (!nextProps.book.id) {
-      let errorMessages = ["Book does not exist"];
-      this.props.action.resetBookAction();
-      this.props.history.replace("/books");
-      renderErrors(errorMessages);
+    if (bookId) {
+      this.props.action.fetchBookAction(bookId).catch(error => {
+        this.props.action.resetBookAction();
+        this.props.history.replace("/books");
+        renderErrors(error.errors.messages);
+      });
     }
   }
 
@@ -44,24 +45,33 @@ export class ShowContainer extends React.Component {
     this.props.history.push(`/books/${bookId}/edit`);
   };
 
+  renderContent = () => {
+    if (this.props.loading) {
+      return <Spinner />;
+    } else {
+      return (
+        <BookShow
+          handleDeleteButton={this.handleDeleteBook}
+          handleIndexButton={this.handleBooksIndex}
+          handleEditButton={this.handleEditBook}
+          book={this.props.book}
+        />
+      );
+    }
+  };
+
   render() {
     return (
       <div className="jumbotron vertical-center custom-container">
-        <div className="container">
-          <BookShow
-            handleDeleteButton={this.handleDeleteBook}
-            handleIndexButton={this.handleBooksIndex}
-            handleEditButton={this.handleEditBook}
-            book={this.props.book}
-          />
-        </div>
+        <div className="container">{this.renderContent()}</div>
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  book: state.booksReducer.book
+  book: state.booksReducer.book,
+  loading: state.booksReducer.loading
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -60,6 +60,21 @@ export function updateBookAction(book) {
   };
 }
 
+export function fetchBookAction(bookId) {
+  return dispatch => {
+    dispatch(fetchBook);
+
+    return makeRequest(Api.get(`/api/v1/books/${bookId}`))
+      .then(books => {
+        dispatch(fetchBookSuccess(books));
+      })
+      .catch(error => {
+        dispatch(fetchBookFailure(error));
+        throw error;
+      });
+  };
+}
+
 export function getBookAction(bookId) {
   return dispatch => {
     dispatch(getBook(bookId));
@@ -134,5 +149,19 @@ export const updateBookSuccess = book => ({
 
 export const updateBookFailure = error => ({
   type: ActionType.UPDATE_BOOK_FAILURE,
+  error
+});
+
+export const fetchBook = {
+  type: ActionType.FETCH_BOOK
+};
+
+export const fetchBookSuccess = book => ({
+  type: ActionType.FETCH_BOOK_SUCCESS,
+  book
+});
+
+export const fetchBookFailure = error => ({
+  type: ActionType.FETCH_BOOK_FAILURE,
   error
 });

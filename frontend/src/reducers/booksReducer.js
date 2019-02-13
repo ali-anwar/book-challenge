@@ -121,6 +121,30 @@ const booksReducer = (state = initialState.booksReducer, action) => {
         )
       };
     }
+    case ActionType.FETCH_BOOK: {
+      return {
+        ...state,
+        book: {},
+        loading: true,
+        error: false
+      };
+    }
+    case ActionType.FETCH_BOOK_SUCCESS: {
+      return {
+        ...state,
+        book: _.assign(action.book),
+        loading: false,
+        error: false
+      };
+    }
+    case ActionType.FETCH_BOOK_FAILURE: {
+      return {
+        ...state,
+        loading: false,
+        error: action.error,
+        book: {}
+      };
+    }
     default: {
       return state;
     }

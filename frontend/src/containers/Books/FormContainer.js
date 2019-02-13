@@ -6,22 +6,18 @@ import * as BookActions from "../../actions/BookActions";
 import BookForm from "../../components/Books/Form"; // eslint-disable-line import/no-named-as-default
 import { EDIT_BOOK, ADD_BOOK } from "../../config/formHeadings";
 import { renderErrors, renderSuccess } from "../../lib/renderNotifications";
+import Spinner from "../../components/Common/Spinner";
+
 export class FormContainer extends React.Component {
   componentDidMount() {
     let bookId = Number(this.props.match.params.id);
 
     if (bookId) {
-      let book = this.props.books.find(
-        bookBeingUpdated => bookBeingUpdated.id === bookId
-      );
-      if (book) {
-        this.props.action.getBookAction(book.id);
-      } else {
-        let errorMessages = ["Book does not exist"];
+      this.props.action.fetchBookAction(bookId).catch(error => {
         this.props.action.resetBookAction();
         this.props.history.replace("/books");
-        renderErrors(errorMessages);
-      }
+        renderErrors(error.errors.messages);
+      });
     }
   }
 
@@ -72,21 +68,29 @@ export class FormContainer extends React.Component {
     this.props.history.replace("/books");
   };
 
-  render() {
-    const { initialValues } = this.props;
-    const heading = initialValues && initialValues.id ? EDIT_BOOK : ADD_BOOK;
+  renderContent = () => {
+    if (this.props.loading) {
+      return <Spinner />;
+    } else {
+      const { initialValues } = this.props;
+      const heading = initialValues && initialValues.id ? EDIT_BOOK : ADD_BOOK;
 
+      return (
+        <BookForm
+          heading={heading}
+          handleSave={this.handleSave}
+          handleCancel={this.handleCancel}
+          initialValues={initialValues}
+          currentBooks={this.props.books}
+        />
+      );
+    }
+  };
+
+  render() {
     return (
       <div className="jumbotron vertical-center custom-container">
-        <div className="container">
-          <BookForm
-            heading={heading}
-            handleSave={this.handleSave}
-            handleCancel={this.handleCancel}
-            initialValues={initialValues}
-            currentBooks={this.props.books}
-          />
-        </div>
+        <div className="container">{this.renderContent()}</div>
       </div>
     );
   }
@@ -94,7 +98,8 @@ export class FormContainer extends React.Component {
 
 const mapStateToProps = state => ({
   books: state.booksReducer.books,
-  initialValues: state.booksReducer.book
+  initialValues: state.booksReducer.book,
+  loading: state.booksReducer.loading
 });
 
 const mapDispatchToProps = dispatch => ({
