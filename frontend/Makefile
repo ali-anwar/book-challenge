@@ -1,5 +1,5 @@
 setup:
 	npm ci
 
-start:
+server:
 	npm start
